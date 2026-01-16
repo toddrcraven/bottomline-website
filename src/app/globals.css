@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-blue: #44a9e2;
+  --brand-green: #22c55e;
+  --brand-gold: #fbbf24;
+  --slate-900: #0f172a;
+  --slate-700: #334155;
+  --slate-600: #475569; /* slightly lighter header tone */
+  --slate-500: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --header-bg: #5b728a; /* lighter than slate for logo contrast */
+  --bg: #1E2630;
+  --surface: #111827;
+
+  --brand-amber: var(--brand-gold);
+  --brand-slate: var(--slate-500);
+  --brand-charcoal: var(--slate-700);
+  --surface-2: #0f172a;
+  --border: rgba(100, 116, 139, 0.4);
+  --text: var(--slate-200);
+  --muted: var(--slate-500);
+  --accent: var(--brand-gold);
+  --accent-2: var(--brand-green);
+  --focus: var(--brand-blue);
+  --shadow-cta: rgba(15, 23, 42, 0.35);
+  --font-geist-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-geist-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-backgroundBase: var(--bg);
+  --color-surface: var(--surface);
+  --color-surfaceMuted: var(--surface-2);
+  --color-borderSoft: var(--border);
+  --color-brandBlue: var(--brand-blue);
+  --color-brandGreen: var(--brand-green);
+  --color-brandAmber: var(--brand-amber);
+  --color-brandSlate: var(--brand-slate);
+  --color-brandCharcoal: var(--brand-charcoal);
+  --color-textPrimary: var(--text);
+  --color-textMuted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent2: var(--accent-2);
+  --color-focus: var(--focus);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+a {
+  color: var(--brand-blue);
+}
+
+p,
+li {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.site-header {
+  background-color: var(--header-bg) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+.site-footer {
+  background-color: var(--header-bg) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+/* BottomLine: subtle gradient underline for section headings */
+.bl-underlined {
+  position: relative;
+}
+
+.bl-underlined::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.45rem;
+  width: 4.5rem;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--brand-blue), 1) 0%,
+    rgba(var(--brand-green), 1) 100%
+  );
+  border-radius: 9999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bl-no-lift {
+    transform: none !important;
+    box-shadow: none !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Reusable green-outlined content panel (matches Features cards). */
+  .bl-panel {
+    @apply border border-brandGreen/60;
+  }
 }
