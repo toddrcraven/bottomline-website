@@ -127,7 +127,7 @@ export default function ContactPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-        <section className="rounded-xl border border-brandGreen/30 bg-surface p-6 shadow-sm">
+        <section className="bl-card-pretty rounded-xl border border-brandGreen/30 bg-surface p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-white">Start the conversation</h2>
           <p className="mt-2 text-sm text-brandSlate">
             Send us the details and we&apos;ll get back within one business day.
@@ -241,7 +241,7 @@ export default function ContactPage() {
           </form>
         </section>
 
-        <aside className="rounded-xl border border-brandGreen/30 bg-surface p-6 shadow-sm">
+        <aside className="bl-card-pretty rounded-xl border border-brandGreen/30 bg-surface p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-white">What happens next</h2>
           <ul className="mt-4 space-y-3 text-sm text-brandSlate">
             <li>We&apos;ll respond within 1 business day.</li>

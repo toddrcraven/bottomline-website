@@ -1,10 +1,8 @@
 export default function SecurityControlsPage() {
   return (
     <main className="mx-auto w-full max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-semibold text-white">
-          Security &amp; Controls
-        </h1>
+      <header className="mb-10">
+        <h1 className="text-3xl font-semibold text-white">App Security</h1>
         <p className="mt-3 max-w-3xl text-brandSlate">
           BottomLine builds on Salesforce security with purpose-built roles,
           approvals, and accounting discipline so every transaction stays
@@ -12,8 +10,8 @@ export default function SecurityControlsPage() {
         </p>
       </header>
 
-      <section className="grid gap-6 md:grid-cols-2">
-        <div className="rounded bl-panel bg-surface-header p-6">
+      <section className="grid gap-6 lg:grid-cols-3">
+        <div className="rounded-2xl bl-panel bg-surface-header p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-white">
             Roles &amp; Permissions
           </h2>
@@ -32,7 +30,7 @@ export default function SecurityControlsPage() {
           </ul>
         </div>
 
-        <div className="rounded bl-panel bg-surface-header p-6">
+        <div className="rounded-2xl bl-panel bg-surface-header p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-white">
             Auditability &amp; Approvals
           </h2>
@@ -48,7 +46,7 @@ export default function SecurityControlsPage() {
           </ul>
         </div>
 
-        <div className="rounded bl-panel bg-surface-header p-6 md:col-span-2">
+        <div className="rounded-2xl bl-panel bg-surface-header p-6 shadow-sm lg:col-span-3">
           <h2 className="text-xl font-semibold text-white">
             Financial Traceability (GL Linkage)
           </h2>
@@ -65,7 +63,7 @@ export default function SecurityControlsPage() {
         </div>
       </section>
 
-      <p className="mt-8 text-brandSlate">
+      <p className="mt-10 text-brandSlate">
         Have security or compliance questions?{" "}
         <a
           href="/contact"

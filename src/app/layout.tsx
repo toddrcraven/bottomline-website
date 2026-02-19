@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageBackdrop } from "@/components/layout/PageBackdrop";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import "./globals.css";
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="min-h-screen bg-backgroundBase text-textPrimary">
+        <PageBackdrop />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

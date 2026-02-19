@@ -24,13 +24,13 @@ export function SiteFooter() {
             </Link>
             <Link
               href="/features"
-              className="inline-flex items-center justify-center rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandGreen focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundBase"
+              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandBlue focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundBase"
             >
               Explore Features
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandGreen focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundBase"
+              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandBlue focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundBase"
             >
               View Pricing
             </Link>

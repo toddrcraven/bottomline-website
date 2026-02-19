@@ -2,16 +2,28 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { VideoModal } from "@/components/VideoModal";
 
 const INLINE_SRC =
   "https://www.youtube.com/embed/zoOP5s9ONjg?rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=http://localhost:3000";
 
 export default function ProductPage() {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasEmbedError, setHasEmbedError] = useState(false);
+  const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
   const heroRef = useRef<HTMLElement | null>(null);
   const restRef = useRef<HTMLDivElement | null>(null);
+  const navTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (navTimeoutRef.current !== null) {
+        window.clearTimeout(navTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const elements = Array.from(
@@ -200,64 +212,70 @@ export default function ProductPage() {
 
   const moduleCards = [
     {
+      id: "accounting",
       title: "Accounting",
+      blurb: "Bank reconciliation, journal entries, chart of accounts, and budgeting.",
+    },
+    {
+      id: "fixed-assets",
+      title: "Fixed Assets",
+      blurb: "Fixed asset management, acquisition, depreciation, and disposition.",
+    },
+    {
+      id: "sales-trade-management",
+      title: "Sales & Trade Management",
+      blurb: "Sales orders, order fulfillment, and promotional programs.",
+    },
+    {
+      id: "procurement",
+      title: "Procurement",
+      blurb: "Purchase orders and receipts.",
+    },
+    {
+      id: "warehouse",
+      title: "Warehouse",
+      blurb: "Warehouse management, lot tracking, transfers, picks, and put-aways.",
+    },
+    {
+      id: "planning-production",
+      title: "Planning & Production",
       blurb:
-        "GL, AR/AP, invoicing, bank reconciliation, and audit-friendly controls.",
+        "Forecasts, production plans, master production schedules, MRP, and work orders.",
     },
     {
-      title: "Sales & Order Management",
+      id: "financial-hub",
+      title: "Financial Hub",
+      blurb: "Financial statements, check printing, and period closing.",
+    },
+    {
+      id: "bottomline-administration",
+      title: "BottomLine Administration",
       blurb:
-        "Opportunity to quote to order with pricing rules and fulfillment visibility.",
-    },
-    {
-      title: "Procurement & Purchasing",
-      blurb: "Vendors, POs, receipts, approvals, and smart reordering.",
-    },
-    {
-      title: "Inventory & WMS",
-      blurb:
-        "Multi-location/bin, lots/serials, barcode workflows, and real-time COGS.",
-    },
-    {
-      title: "MRP/MPS",
-      blurb:
-        "BOMs, work orders, demand/supply planning, and visual scheduling.",
-    },
-    {
-      title: "Contract Management",
-      blurb:
-        "Approvals, obligations, renewals, and milestones tied to delivery.",
-    },
-    {
-      title: "Loan Management",
-      blurb: "Amortization schedules, repayments, interest recognition, alerts.",
-    },
-    {
-      title: "Trade Management",
-      blurb: "Programs, rebates, chargebacks, and accruals tied to the GL.",
-    },
-    {
-      title: "Reporting & Dashboards",
-      blurb: "Operational and financial KPIs with drill-downs and export.",
+        "Accounting setups, warehouse setups, document templates, and administrative settings across accounting, purchasing, sales, inventory, and planning.",
     },
   ];
 
   const flowSteps = [
-    { step: "Opportunity", sub: "Price and margin insight" },
-    { step: "Quote", sub: "Terms and discounts" },
-    { step: "Order", sub: "Reserve stock and plan" },
-    { step: "Pick/Ship", sub: "Barcode and WMS" },
-    { step: "Invoice", sub: "AR and trade accruals" },
-    { step: "GL Close", sub: "Clean month-end" },
+    { step: "Budget", sub: "" },
+    { step: "Forecast", sub: "" },
+    { step: "Plan", sub: "" },
+    { step: "Procure", sub: "" },
+    { step: "Produce", sub: "" },
+    { step: "Sell", sub: "" },
+    { step: "Collect", sub: "" },
+    { step: "Reconcile", sub: "" },
+    { step: "Close", sub: "" },
+    { step: "Analyze", sub: "" },
+    { step: "Replan", sub: "" },
   ];
 
   const screenshotSlots = [
     "Accounting dashboard",
-    "Inventory with bins & lots",
-    "MRP work orders",
-    "Procurement approvals",
-    "Loan schedules",
-    "Trade programs & accruals",
+    "Financial reporting engine",
+    "Production plan",
+    "Work order",
+    "Work order completion",
+    "Lot tracking",
   ];
 
   return (
@@ -267,35 +285,33 @@ export default function ProductPage() {
         className="relative grid min-h-[calc(100vh-6rem)] items-center gap-6 lg:grid-cols-8 lg:items-stretch"
       >
         <div className="lg:col-span-4 lg:flex lg:flex-col lg:h-full lg:pb-[2px]">
-          <h2 className="text-2xl font-semibold text-white">
-            BottomLine ERP is positioned as
-          </h2>
+          <h2 className="text-2xl font-semibold text-white">BottomLine ERP</h2>
           <p className="mt-3 text-brandSlate">
-            A modular, cloud-native ERP built natively on Salesforce — designed
-            specifically for small to medium sized businesses who need
-            integrated business tools but do not want an overly complex
-            enterprise system.
+            A modular, cloud-native ERP built natively in Salesforce that is
+            designed specifically for small- to medium-sized businesses needing
+            a fully-integrated system that is simple to use, yet able to handle
+            all of the complexity of a growing manufacturing business.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/features"
-              className="rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04]"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
             >
-              Learn More
+              <span className="relative z-10 text-white">Learn More</span>
             </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
             >
-              <span className="relative z-10 text-white">Contact BL Team</span>
+              <span className="relative z-10 text-white">Contact Our Team</span>
             </Link>
           </div>
           <div className="mt-10 sm:mt-12 lg:mt-12">
             <Link
               href="/pricing"
-              className="inline-flex items-center gap-2 rounded border border-brandGreen px-6 py-3 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04]"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
             >
-              <span>View our Pricing</span>
+              <span className="relative z-10 text-white">View Our Pricing</span>
               <svg
                 aria-hidden="true"
                 className="h-4 w-4"
@@ -381,16 +397,40 @@ export default function ProductPage() {
       <section className="mt-16 space-y-10">
         <div data-reveal className="rounded bl-panel bg-surface-header p-6">
           <h2 className="text-xl font-semibold text-white">
+            Screenshots (placeholders)
+          </h2>
+          <p className="mt-2 text-brandSlate">
+            We&apos;ll drop in product screens here. For now, these mark the key
+            views.
+          </p>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {screenshotSlots.map((slot) => (
+              <div
+                key={slot}
+                className="bl-card-pretty aspect-video rounded border-2 border-dashed border-border/60 bg-surface-header/40 p-3"
+              >
+                <div className="flex h-full w-full items-center justify-center text-sm text-brandSlate">
+                  {slot}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div data-reveal className="rounded bl-panel bg-surface-header p-6">
+          <h2 className="text-xl font-semibold text-white">
             Key modules at a glance
           </h2>
           <p className="mt-2 text-brandSlate">
-            Start with core, then add what you need across finance, operations,
-            and planning.
+            BottomLine includes all of the modules you need to set up and run
+            your manufacturing business, from finance and inventory to planning
+            and operations. Reporting and dashboards are available within
+            modules and are not a standalone module.
           </p>
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {moduleCards.map((module) => (
               <div
-                key={module.title}
+                key={module.id}
                 className="rounded bl-panel bg-surface-header/50 p-4"
               >
                 <h3 className="text-lg font-semibold text-white">
@@ -399,8 +439,34 @@ export default function ProductPage() {
                 <p className="mt-2 text-brandSlate">{module.blurb}</p>
                 <div className="mt-3">
                   <Link
-                    href="/features"
-                    className="text-sm text-brandSlate underline underline-offset-4 hover:text-white"
+                    href={`/features?module=${module.id}`}
+                    onClick={(event) => {
+                      if (
+                        event.button !== 0 ||
+                        event.metaKey ||
+                        event.ctrlKey ||
+                        event.shiftKey ||
+                        event.altKey
+                      ) {
+                        return;
+                      }
+
+                      event.preventDefault();
+                      setActiveModuleId(module.id);
+                      const href = `/features?module=${module.id}`;
+
+                      if (navTimeoutRef.current !== null) {
+                        window.clearTimeout(navTimeoutRef.current);
+                      }
+
+                      navTimeoutRef.current = window.setTimeout(() => {
+                        router.push(href);
+                      }, 350);
+                    }}
+                    className={[
+                      "text-sm text-brandSlate underline underline-offset-4 hover:text-white transition-opacity duration-300",
+                      activeModuleId === module.id ? "opacity-70" : "opacity-100",
+                    ].join(" ")}
                   >
                     View details
                   </Link>
@@ -414,32 +480,28 @@ export default function ProductPage() {
           <h2 className="text-xl font-semibold text-white">Why BottomLine</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-brandSlate">
             <li>
-              <strong>Salesforce-native</strong> with modular add-as-you-grow
-              flexibility.
+              <strong>Salesforce-native</strong> with modules to support most
+              major functions in your company
             </li>
             <li>
-              <strong>Native accounting</strong> that eliminates fragile
-              third-party syncs.
+              <strong>Native accounting</strong> that eliminate fragile
+              third-party syncs or double-entry
             </li>
             <li>
-              <strong>True quote-to-cash</strong> across sales, inventory, and
-              finance.
+              <strong>SMB-friendly UX</strong> with fully functional automated
+              MRP and workflows built to streamline your process
             </li>
             <li>
-              <strong>SMB-friendly UX</strong> with lighter MRP and streamlined
-              workflows.
+              <strong>Mobile warehouse &amp; barcoding</strong> right inside the
+              native Salesforce mobile app
             </li>
             <li>
-              <strong>Mobile warehouse &amp; barcoding</strong> built for floor
-              ops.
+              <strong>Tight GL linkage</strong> for procurement, inventory,
+              production, order fulfillment, and trade programs
             </li>
             <li>
-              <strong>Tight GL linkage</strong> for inventory, production, and
-              trade postings.
-            </li>
-            <li>
-              <strong>Low-friction deployment</strong> with opinionated defaults
-              that still configure.
+              <strong>Low-friction deployment</strong> with configurable
+              defaults and custom chart of accounts
             </li>
           </ul>
           <div className="mt-4 flex flex-wrap gap-3">
@@ -452,7 +514,7 @@ export default function ProductPage() {
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04]"
+              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] pointer-events-auto relative z-10"
             >
               View Pricing
             </Link>
@@ -460,9 +522,7 @@ export default function ProductPage() {
         </div>
 
         <div data-reveal className="rounded bl-panel bg-surface-header p-6">
-          <h2 className="text-xl font-semibold text-white">
-            Flow: Quote to cash
-          </h2>
+          <h2 className="text-xl font-semibold text-white">Flow</h2>
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {flowSteps.map((step, index) => (
               <div key={step.step} className="flex items-center gap-3">
@@ -482,68 +542,35 @@ export default function ProductPage() {
 
         <div data-reveal className="rounded bl-panel bg-surface-header p-6">
           <h2 className="text-xl font-semibold text-white">
-            Screenshots (placeholders)
-          </h2>
-          <p className="mt-2 text-brandSlate">
-            We&apos;ll drop in product screens here. For now, these mark the key
-            views.
-          </p>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {screenshotSlots.map((slot) => (
-              <div
-                key={slot}
-                className="aspect-video rounded border-2 border-dashed border-border/60 bg-surface-header/40 p-3"
-              >
-                <div className="flex h-full w-full items-center justify-center text-sm text-brandSlate">
-                  {slot}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div data-reveal className="rounded bl-panel bg-surface-header p-6">
-          <h2 className="text-xl font-semibold text-white">
             Implementation &amp; support
           </h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-brandSlate">
             <li>
-              <strong>QuickStart</strong> — focused launch for core modules and
-              data import.
+              <strong>QuickStart</strong> — use BottomLine defaults for
+              accounting and warehouse setups, limited data import and
+              training, 1 sandbox deployment
             </li>
             <li>
-              <strong>Standard Launch</strong> — broader module set with
-              workflows and training.
+              <strong>Standard launch</strong> — review and update all setups
+              and configurations, 2 sandbox deployments, online training for
+              all functions
             </li>
             <li>
-              <strong>Full Suite Setup</strong> — advanced planning, WMS, and
-              governance.
+              <strong>Full suite setup</strong> — advance setup and
+              configuration, full project governance, 2 sandbox deployments
             </li>
           </ul>
           <div className="mt-4">
             <Link
               href="/contact"
-              aria-label="Contact BL Team"
+              aria-label="Contact Our Team"
               className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] pointer-events-auto relative z-10"
             >
-              Contact BL Team
+              Contact Our Team
             </Link>
           </div>
         </div>
 
-        <div data-reveal className="rounded bl-panel bg-surface-header p-6">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="text-brandSlate">
-              Transparent tiers fit SMB budgets and scale as you add modules.
-            </p>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center justify-center rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04]"
-            >
-              View Pricing
-            </Link>
-          </div>
-        </div>
       </section>
       <VideoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>

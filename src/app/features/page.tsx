@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Modal from "@/components/Modal";
 
 type Feature = {
@@ -15,69 +16,65 @@ const modules: Feature[] = [
     id: "accounting",
     title: "Accounting",
     short:
-      "GL, AR/AP, invoicing, bank rec, recurring entries; optional fixed assets; audit-friendly controls.",
+      "The Accounting app is the financial core of BottomLine, providing real-time visibility into the general ledger and all supporting subledgers.",
     long:
-      "Native accounting with GL, AR/AP, invoicing, bank reconciliation, recurring entries, and optional fixed assets. Audit-ready controls keep close and reporting clean.",
+      "The Accounting app is the financial core of BottomLine, providing real-time visibility into the general ledger and all supporting subledgers. It supports day-to-day accounting operations while ensuring downstream transactions from inventory, purchasing, sales, and fixed assets are automatically reflected in the books.\n\nKey capabilities include bank reconciliation with automated matching and variance tracking, flexible journal entry management for adjustments and accruals, and a fully configurable chart of accounts. BottomLine’s budgeting functionality allows budgets to be defined by account, period, and multiple dimensions, enabling detailed financial planning and variance analysis. Together, these capabilities ensure accurate financial reporting, strong internal controls, and audit-ready accounting.",
   },
   {
-    id: "sales-order",
-    title: "Sales & Order Management",
+    id: "fixed-assets",
+    title: "Fixed Assets",
     short:
-      "Opportunity to quote to order, pricing rules, fulfillment, and shipment tracking.",
+      "The Fixed Assets app manages the full lifecycle of capital assets from acquisition through depreciation and eventual disposition.",
     long:
-      "Manage the full quote-to-cash flow from opportunity and quote through sales orders, pricing rules, fulfillment, and shipment tracking.",
+      "The Fixed Assets app manages the full lifecycle of capital assets from acquisition through depreciation and eventual disposition. Assets can be created directly or automatically from purchasing and accounts payable transactions, ensuring consistency between operational activity and accounting records.\n\nBottomLine supports multiple depreciation methods and schedules, with depreciation posted automatically to the general ledger. Asset reclassifications, impairments, and disposals are handled with full auditability, including automated gain or loss calculations. Fixed asset balances are maintained in real time, enabling accurate reporting, compliance, and alignment with financial statements.",
+  },
+  {
+    id: "sales-trade-management",
+    title: "Sales & Trade Management",
+    short:
+      "The Sales & Trade Management app supports order-driven revenue processes and complex trade and promotional programs.",
+    long:
+      "The Sales & Trade Management app supports order-driven revenue processes and complex trade and promotional programs. It manages sales orders from entry through fulfillment, ensuring accurate pricing, availability checks, and downstream execution.\n\nOrder fulfillment is tightly integrated with warehouse operations, inventory, and invoicing to provide real-time visibility into order status and financial impact. Promotional and trade programs can be configured to support discounts, rebates, and incentives, with automated accruals and settlement. This ensures that revenue, trade spend, and margins are tracked accurately across customers, products, and programs.",
   },
   {
     id: "procurement",
-    title: "Procurement & Purchasing",
-    short: "Vendors, purchase orders, receipts, approvals, reorder points.",
-    long:
-      "Centralize vendor records, PO creation, approvals, receipts, and reorder points with spend visibility.",
-  },
-  {
-    id: "inventory",
-    title: "Warehouse & Inventory",
+    title: "Procurement",
     short:
-      "Multi-location/bin, barcoding, cycle counts, lot/serial, real-time COGS.",
+      "The Procurement app manages purchasing activities from purchase order creation through receipt and financial posting.",
     long:
-      "Track inventory across locations and bins with barcode scanning, cycle counts, lot/serial control, and real-time COGS posting.",
+      "The Procurement app manages purchasing activities from purchase order creation through receipt and financial posting. Purchase orders can be created manually or generated from planning outputs such as material requirements, ensuring alignment between demand and supply.\n\nReceipts update inventory and accruals in real time, providing immediate visibility into received quantities, costs, and liabilities. Procurement is fully integrated with accounting, inventory, and vendor management, enabling accurate three-way matching, cost control, and supplier performance tracking.",
   },
   {
-    id: "mrp",
-    title: "Production Planning (MRP/MPS)",
+    id: "warehouse",
+    title: "Warehouse",
     short:
-      "BOMs, work/production orders, demand and supply planning, visual scheduling.",
+      "The Warehouse app provides comprehensive inventory and warehouse management capabilities.",
     long:
-      "Plan with BOMs, work orders, MRP/MPS demand and supply planning, and simple visual scheduling.",
+      "The Warehouse app provides comprehensive inventory and warehouse management capabilities. It supports real-time tracking of inventory across warehouses, locations, bins, and lots, ensuring accurate on-hand, available, and reserved quantities.\n\nCore processes include inventory transfers, picking, put-aways, and lot tracking for traceability and compliance. Warehouse transactions automatically generate inventory and accounting entries, maintaining alignment between physical movement and financial valuation. This enables operational efficiency while preserving inventory accuracy and audit integrity.",
   },
   {
-    id: "contracts",
-    title: "Contract Management",
+    id: "planning-production",
+    title: "Planning & Production",
     short:
-      "Approvals, obligations, renewals, milestones; link time, cost, and revenue.",
+      "The Planning & Production app drives demand and supply planning across the organization.",
     long:
-      "Track contract milestones, approvals, obligations, and renewals with links to time, cost, and revenue.",
+      "The Planning & Production app drives demand and supply planning across the organization. Forecasts capture anticipated demand, which feeds production plans and master production schedules (MPS) for finished goods and subassemblies.\n\nMaterial resource planning (MRP) translates production plans into detailed material and capacity requirements, identifying shortages and constraints. Work orders manage execution on the shop floor, tracking consumption, production, and variances. This end-to-end planning and execution framework ensures that production decisions are data-driven, coordinated, and financially visible.",
   },
   {
-    id: "loans",
-    title: "Loan Management",
-    short: "Amortization schedules, repayments, interest recognition, alerts.",
+    id: "financial-hub",
+    title: "Financial Hub",
+    short:
+      "The Financial Hub app centralizes financial oversight and period-end activities.",
     long:
-      "Set up loans with amortization schedules, repayment tracking, interest recognition, and alerts tied to the GL.",
+      "The Financial Hub app centralizes financial oversight and period-end activities. It provides access to core financial statements, including income statements, balance sheets, and cash flow reports, with the ability to analyze results across multiple dimensions.\n\nIn addition, the Financial Hub supports operational finance functions such as check printing and structured period closing. Period close tools help coordinate and control posting activities, ensure completeness, and maintain auditability. This app serves as the command center for financial performance and governance.",
   },
   {
-    id: "trade",
-    title: "Trade Management",
-    short: "Trade programs, rebates, commissions, chargebacks, GL accruals.",
+    id: "bottomline-administration",
+    title: "BottomLine Administration",
+    short:
+      "The BottomLine Administration app provides the configuration and control layer that powers the entire ERP.",
     long:
-      "Manage trade programs, rebates, commissions, and chargebacks with accruals tied directly to the GL.",
-  },
-  {
-    id: "reporting",
-    title: "Reporting & Dashboards",
-    short: "Operational and financial dashboards, drill-downs, exports.",
-    long:
-      "Use operational and financial dashboards with drill-downs and exports for decision-making.",
+      "The BottomLine Administration app provides the configuration and control layer that powers the entire ERP. It enables administrators and finance leaders to define accounting setups, warehouse configurations, and document templates that drive consistent behavior across transactions.\n\nAdministrative settings control how accounting, purchasing, sales, inventory, and planning processes behave, including transaction types, posting rules, dimensions, and automation logic. Because BottomLine is setup-driven, these configurations reduce manual entry, enforce business rules, and ensure scalability as the organization grows.",
   },
 ];
 
@@ -244,7 +241,7 @@ function FeatureSection({ title, items, onOpen }: SectionProps) {
             type="button"
             onClick={() => onOpen(feature)}
             aria-haspopup="dialog"
-            className="bl-no-lift group flex h-full min-h-[140px] w-full flex-col justify-between rounded-xl border border-brandGreen/60 bg-surfaceMuted/70 p-5 text-left shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-brandBlue/30 hover:shadow-md hover:ring-1 hover:ring-brandBlue/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandBlue"
+            className="bl-card-pretty bl-no-lift group flex h-full min-h-[140px] w-full flex-col justify-between rounded-xl border border-brandGreen/60 bg-surfaceMuted/70 p-5 text-left shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-brandBlue/30 hover:shadow-md hover:ring-1 hover:ring-brandBlue/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandBlue"
           >
             <div>
               <p className="text-lg font-semibold text-white">
@@ -266,6 +263,19 @@ function FeatureSection({ title, items, onOpen }: SectionProps) {
 
 export default function FeaturesPage() {
   const [selected, setSelected] = useState<Feature | null>(null);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const moduleId = searchParams.get("module");
+    if (!moduleId) {
+      return;
+    }
+
+    const match = modules.find((module) => module.id === moduleId);
+    if (match) {
+      setSelected(match);
+    }
+  }, [searchParams]);
 
   return (
     <main className="mx-auto w-full max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
