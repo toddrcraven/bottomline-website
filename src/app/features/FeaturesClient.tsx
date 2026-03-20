@@ -208,11 +208,13 @@ export default function FeaturesClient() {
     setSelected(feature);
   };
 
+  type ReturnPosition = { path?: string; search?: string; scrollY?: number };
+
   const handleClose = () => {
-    let data: { path?: string; search?: string; scrollY?: number } | null = null;
+    let data: ReturnPosition | null = null;
     try {
       const raw = window.sessionStorage.getItem(returnKey);
-      data = raw ? (JSON.parse(raw) as typeof data) : null;
+      data = raw ? (JSON.parse(raw) as ReturnPosition) : null;
     } catch {
       data = null;
     }
