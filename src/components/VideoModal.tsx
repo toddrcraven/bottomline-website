@@ -59,7 +59,7 @@ export function VideoModal({ isOpen, onClose }: VideoModalProps) {
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="mb-2 rounded bg-black/70 px-3 py-1 text-xs font-semibold text-white"
+            className="mb-2 rounded bg-black/70 px-3 py-1 text-xs font-semibold text-[color:var(--header-banner-bg)]"
             aria-label="Close video"
           >
             Close

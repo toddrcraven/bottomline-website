@@ -10,6 +10,7 @@ const INLINE_SRC =
 
 export default function ProductPage() {
   const router = useRouter();
+  const returnKey = "moduleDetailReturn";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasEmbedError, setHasEmbedError] = useState(false);
   const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
@@ -23,6 +24,35 @@ export default function ProductPage() {
         window.clearTimeout(navTimeoutRef.current);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const raw =
+      typeof window !== "undefined"
+        ? window.sessionStorage.getItem(returnKey)
+        : null;
+    if (!raw) {
+      return;
+    }
+    try {
+      const data = JSON.parse(raw) as {
+        path?: string;
+        search?: string;
+        scrollY?: number;
+      };
+      if (
+        data.path === window.location.pathname &&
+        data.search === window.location.search &&
+        typeof data.scrollY === "number"
+      ) {
+        window.requestAnimationFrame(() => {
+          window.scrollTo({ top: data.scrollY, behavior: "auto" });
+        });
+        window.sessionStorage.removeItem(returnKey);
+      }
+    } catch {
+      window.sessionStorage.removeItem(returnKey);
+    }
   }, []);
 
   useEffect(() => {
@@ -255,29 +285,6 @@ export default function ProductPage() {
     },
   ];
 
-  const flowSteps = [
-    { step: "Budget", sub: "" },
-    { step: "Forecast", sub: "" },
-    { step: "Plan", sub: "" },
-    { step: "Procure", sub: "" },
-    { step: "Produce", sub: "" },
-    { step: "Sell", sub: "" },
-    { step: "Collect", sub: "" },
-    { step: "Reconcile", sub: "" },
-    { step: "Close", sub: "" },
-    { step: "Analyze", sub: "" },
-    { step: "Replan", sub: "" },
-  ];
-
-  const screenshotSlots = [
-    "Accounting dashboard",
-    "Financial reporting engine",
-    "Production plan",
-    "Work order",
-    "Work order completion",
-    "Lot tracking",
-  ];
-
   return (
     <main className="mx-auto w-full max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
       <section
@@ -295,23 +302,29 @@ export default function ProductPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/features"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
             >
-              <span className="relative z-10 text-white">Learn More</span>
+              <span className="relative z-10 text-[color:var(--header-banner-bg)]">
+                Learn More
+              </span>
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
             >
-              <span className="relative z-10 text-white">Contact Our Team</span>
+              <span className="relative z-10 text-[color:var(--header-banner-bg)]">
+                Contact Our Team
+              </span>
             </Link>
           </div>
           <div className="mt-10 sm:mt-12 lg:mt-12">
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
             >
-              <span className="relative z-10 text-white">View Our Pricing</span>
+              <span className="relative z-10 text-[color:var(--header-banner-bg)]">
+                View Our Pricing
+              </span>
               <svg
                 aria-hidden="true"
                 className="h-4 w-4"
@@ -344,7 +357,7 @@ export default function ProductPage() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="absolute bottom-3 right-3 rounded bg-black/70 px-3 py-1 text-xs font-semibold text-white"
+              className="absolute bottom-3 right-3 rounded bg-black/70 px-3 py-1 text-xs font-semibold text-[color:var(--header-banner-bg)]"
             >
               Play video
             </button>
@@ -397,28 +410,6 @@ export default function ProductPage() {
       <section className="mt-16 space-y-10">
         <div data-reveal className="rounded bl-panel bg-surface-header p-6">
           <h2 className="text-xl font-semibold text-white">
-            Screenshots (placeholders)
-          </h2>
-          <p className="mt-2 text-brandSlate">
-            We&apos;ll drop in product screens here. For now, these mark the key
-            views.
-          </p>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {screenshotSlots.map((slot) => (
-              <div
-                key={slot}
-                className="bl-card-pretty aspect-video rounded border-2 border-dashed border-border/60 bg-surface-header/40 p-3"
-              >
-                <div className="flex h-full w-full items-center justify-center text-sm text-brandSlate">
-                  {slot}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div data-reveal className="rounded bl-panel bg-surface-header p-6">
-          <h2 className="text-xl font-semibold text-white">
             Key modules at a glance
           </h2>
           <p className="mt-2 text-brandSlate">
@@ -427,12 +418,22 @@ export default function ProductPage() {
             and operations. Reporting and dashboards are available within
             modules and are not a standalone module.
           </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {moduleCards.map((module) => (
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+            {moduleCards.map((module, index) => (
               <div
                 key={module.id}
-                className="rounded bl-panel bg-surface-header/50 p-4"
+                className={[
+                  "rounded bl-panel bg-surface-header/50 p-4",
+                  "lg:col-span-2",
+                  index === moduleCards.length - 2 ? "lg:col-start-2" : "",
+                  index === moduleCards.length - 1 ? "lg:col-start-4" : "",
+                ].join(" ")}
               >
+                <div className="rounded-md border-2 border-dashed border-border/60 bg-surface-header/40 p-3">
+                  <div className="flex h-24 w-full items-center justify-center text-xs text-brandSlate">
+                    Screenshot
+                  </div>
+                </div>
                 <h3 className="text-lg font-semibold text-white">
                   {module.title}
                 </h3>
@@ -454,6 +455,16 @@ export default function ProductPage() {
                       event.preventDefault();
                       setActiveModuleId(module.id);
                       const href = `/features?module=${module.id}`;
+                      try {
+                        window.sessionStorage.setItem(
+                          returnKey,
+                          JSON.stringify({
+                            path: window.location.pathname,
+                            search: window.location.search,
+                            scrollY: window.scrollY,
+                          })
+                        );
+                      } catch {}
 
                       if (navTimeoutRef.current !== null) {
                         window.clearTimeout(navTimeoutRef.current);
@@ -508,35 +519,16 @@ export default function ProductPage() {
             <Link
               href="/features"
               aria-label="Explore Features"
-              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] pointer-events-auto relative z-10"
+              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.04] pointer-events-auto relative z-10"
             >
               Explore Features
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] pointer-events-auto relative z-10"
+              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.04] pointer-events-auto relative z-10"
             >
               View Pricing
             </Link>
-          </div>
-        </div>
-
-        <div data-reveal className="rounded bl-panel bg-surface-header p-6">
-          <h2 className="text-xl font-semibold text-white">Flow</h2>
-          <div className="mt-4 flex flex-wrap items-center gap-3">
-            {flowSteps.map((step, index) => (
-              <div key={step.step} className="flex items-center gap-3">
-                <div className="rounded bl-panel px-4 py-3 text-center">
-                  <div className="text-sm font-semibold text-white">
-                    {step.step}
-                  </div>
-                  <div className="mt-1 text-xs text-brandSlate">{step.sub}</div>
-                </div>
-                {index < flowSteps.length - 1 ? (
-                  <span className="text-brandSlate">→</span>
-                ) : null}
-              </div>
-            ))}
           </div>
         </div>
 
@@ -564,7 +556,7 @@ export default function ProductPage() {
             <Link
               href="/contact"
               aria-label="Contact Our Team"
-              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-white transition-transform duration-100 hover:shadow-sm active:scale-[1.04] pointer-events-auto relative z-10"
+              className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold !text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.04] pointer-events-auto relative z-10"
             >
               Contact Our Team
             </Link>

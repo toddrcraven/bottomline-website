@@ -1,20 +1,11 @@
-import PlanCard from "@/components/PlanCard";
+import Link from "next/link";
 
-const plans = [
-  {
-    name: "BottomLine Suite",
-    price: "$1,995 / mo",
-    tagline:
-      "Full suite for manufacturers with advanced finance, warehouse, and planning.",
-    features: [
-      "Warehouse Management (WMS)",
-      "Full MRP/MPS",
-      "Loan Management",
-      "Advanced Accounting & Compliance tools",
-      "Support: Chat + SLA",
-      "Implementation: Guided + Workshop",
-    ],
-  },
+const pricingTiers = [
+  { name: "Up to 5 users", price: "$24,000 / year" },
+  { name: "Up to 15 users", price: "$36,000 / year" },
+  { name: "Up to 30 users", price: "$54,000 / year" },
+  { name: "Up to 60 users", price: "$72,000 / year" },
+  { name: "61+ users", price: "$90,000+ / year" },
 ];
 
 const implementationOptions = [
@@ -48,10 +39,35 @@ export default function PricingPage() {
           you can configure what you need without tier hopping.
         </p>
       </header>
-      <div className="grid gap-6 sm:grid-cols-1">
-        {plans.map((plan) => (
-          <PlanCard key={plan.name} {...plan} />
+      <p className="mb-6 text-sm text-brandSlate">
+        BottomLine Suite includes finance, warehouse, planning, and core
+        manufacturing operations.
+      </p>
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        {pricingTiers.map((tier) => (
+          <div
+            key={tier.name}
+            className="flex h-full flex-col rounded-2xl bl-panel bg-surface p-4 shadow-sm"
+            aria-label={`${tier.name} pricing`}
+          >
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold text-white">{tier.name}</h3>
+              <p className="mt-2 text-xl font-semibold text-white">
+                {tier.price}
+              </p>
+            </div>
+          </div>
         ))}
+      </div>
+      <div className="mt-6 flex justify-start">
+        <Link
+          href="/contact"
+          className="inline-flex items-center justify-center whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.04] relative isolate z-10"
+        >
+          <span className="relative z-10 text-[color:var(--header-banner-bg)]">
+            Contact Our Team
+          </span>
+        </Link>
       </div>
       <section className="mt-12">
         <h2 className="text-2xl font-semibold text-white">Implementation</h2>
@@ -79,7 +95,7 @@ export default function PricingPage() {
         </div>
       </section>
       <p className="mt-8 text-xs text-brandSlate">
-        Prices shown are monthly per org. Final configuration and implementation
+        Prices shown are annual per org. Final configuration and implementation
         are scoped during discovery.
       </p>
     </main>

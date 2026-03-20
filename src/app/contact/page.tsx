@@ -126,7 +126,7 @@ export default function ContactPage() {
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+      <div className="grid gap-6 lg:grid-cols-1">
         <section className="bl-card-pretty rounded-xl border border-brandGreen/30 bg-surface p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-white">Start the conversation</h2>
           <p className="mt-2 text-sm text-brandSlate">
@@ -223,7 +223,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={!canSubmit}
-                className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-white transition-transform duration-100 hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex items-center justify-center rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "sending" ? "Sending..." : "Send Message"}
               </button>
@@ -240,30 +240,6 @@ export default function ContactPage() {
             </div>
           </form>
         </section>
-
-        <aside className="bl-card-pretty rounded-xl border border-brandGreen/30 bg-surface p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-white">What happens next</h2>
-          <ul className="mt-4 space-y-3 text-sm text-brandSlate">
-            <li>We&apos;ll respond within 1 business day.</li>
-            <li>We can share a demo and sample workflows.</li>
-            <li>We&apos;ll recommend the right rollout (QuickStart / Standard / Full Suite).</li>
-          </ul>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/features"
-              className="inline-flex items-center justify-center rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandGreen focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundBase"
-            >
-              Explore Features
-            </Link>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center justify-center rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandGreen focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundBase"
-            >
-              View Pricing
-            </Link>
-          </div>
-        </aside>
       </div>
     </main>
   );

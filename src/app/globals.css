@@ -2,6 +2,7 @@
 
 :root {
   --brand-blue: #44a9e2;
+  --brand-navy: #1f1f59;
   --brand-green: #22c55e;
   --brand-gold: #fbbf24;
   --slate-900: #0f172a;
@@ -10,6 +11,7 @@
   --slate-500: #cbd5e1;
   --slate-200: #e2e8f0;
   --header-bg: #5b728a; /* lighter than slate for logo contrast */
+  --header-banner-bg: #d1d5db;
   --bg: #1E2630;
   --surface: #111827;
 
@@ -63,6 +65,14 @@ li {
   line-height: 1.7;
 }
 
+.site-footer p {
+  color: var(--brand-navy);
+}
+
+.site-footer a:not(.inline-flex) {
+  color: var(--brand-navy);
+}
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -73,13 +83,13 @@ select:focus-visible {
 }
 
 .site-header {
-  background-color: var(--header-bg) !important;
+  background-color: var(--header-banner-bg) !important;
   background-image: none !important;
   opacity: 1 !important;
 }
 
 .site-footer {
-  background-color: var(--header-bg) !important;
+  background-color: var(--header-banner-bg) !important;
   background-image: none !important;
   opacity: 1 !important;
 }

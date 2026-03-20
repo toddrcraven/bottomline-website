@@ -7,9 +7,18 @@ type ModalProps = {
   title: string;
   onClose: () => void;
   children: React.ReactNode;
+  containerClassName?: string;
+  bodyClassName?: string;
 };
 
-export default function Modal({ open, title, onClose, children }: ModalProps) {
+export default function Modal({
+  open,
+  title,
+  onClose,
+  children,
+  containerClassName,
+  bodyClassName,
+}: ModalProps) {
   const titleId = useId();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -50,7 +59,10 @@ export default function Modal({ open, title, onClose, children }: ModalProps) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-4xl rounded-2xl bl-panel bg-surface p-6 shadow-xl"
+        className={[
+          "w-full max-w-4xl rounded-2xl bl-panel bg-surface p-6 shadow-xl",
+          containerClassName ?? "",
+        ].join(" ")}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mb-4 flex items-start justify-between gap-4">
@@ -61,13 +73,18 @@ export default function Modal({ open, title, onClose, children }: ModalProps) {
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="rounded-full bg-brandBlue px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brandBlue/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandBlue"
+            className="rounded-full bg-brandBlue px-4 py-2 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-colors hover:bg-brandBlue/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandBlue"
             aria-label="Close dialog"
           >
             Close
           </button>
         </div>
-        <div className="max-h-[70vh] overflow-y-auto text-sm text-brandSlate">
+        <div
+          className={[
+            "max-h-[70vh] overflow-y-auto text-sm text-brandSlate",
+            bodyClassName ?? "",
+          ].join(" ")}
+        >
           {children}
         </div>
       </div>

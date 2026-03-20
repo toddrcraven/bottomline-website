@@ -44,7 +44,7 @@ export default function PlanCard({
       </ul>
       <Link
         href="/contact"
-        className="mt-auto inline-flex w-full items-center justify-center rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-brandGreen transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandBlue"
+        className="mt-auto inline-flex w-full items-center justify-center rounded border border-brandGreen px-4 py-2 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:bg-[rgba(34,197,94,0.18)] active:scale-[1.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandBlue"
         aria-label={`Contact BL about the ${name} plan`}
       >
         {`Contact BL about ${name}`}
