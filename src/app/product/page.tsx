@@ -245,43 +245,51 @@ export default function ProductPage() {
       id: "accounting",
       title: "Accounting",
       blurb: "Bank reconciliation, journal entries, chart of accounts, and budgeting.",
+      image: "/brand/App%20Images/1.a.jpg",
     },
     {
       id: "fixed-assets",
       title: "Fixed Assets",
       blurb: "Fixed asset management, acquisition, depreciation, and disposition.",
+      image: "/brand/App%20Images/2.a.jpg",
     },
     {
       id: "sales-trade-management",
       title: "Sales & Trade Management",
       blurb: "Sales orders, order fulfillment, and promotional programs.",
+      image: "/brand/App%20Images/3.a.jpg",
     },
     {
       id: "procurement",
       title: "Procurement",
       blurb: "Purchase orders and receipts.",
+      image: "/brand/App%20Images/4.a.jpg",
     },
     {
       id: "warehouse",
       title: "Warehouse",
       blurb: "Warehouse management, lot tracking, transfers, picks, and put-aways.",
+      image: "/brand/App%20Images/5.a.jpg",
     },
     {
       id: "planning-production",
       title: "Planning & Production",
       blurb:
         "Forecasts, production plans, master production schedules, MRP, and work orders.",
+      image: "/brand/App%20Images/6.a.jpg",
     },
     {
       id: "financial-hub",
       title: "Financial Hub",
       blurb: "Financial statements, check printing, and period closing.",
+      image: "/brand/App%20Images/7.a.jpg",
     },
     {
       id: "bottomline-administration",
       title: "BottomLine Administration",
       blurb:
         "Accounting setups, warehouse setups, document templates, and administrative settings across accounting, purchasing, sales, inventory, and planning.",
+      image: "/brand/App%20Images/8.a.jpg",
     },
   ];
 
@@ -430,9 +438,12 @@ export default function ProductPage() {
                 ].join(" ")}
               >
                 <div className="rounded-md border-2 border-dashed border-border/60 bg-surface-header/40 p-3">
-                  <div className="flex h-24 w-full items-center justify-center text-xs text-brandSlate">
-                    Screenshot
-                  </div>
+                  <img
+                    src={module.image}
+                    alt={`${module.title} module screenshot`}
+                    className="h-auto w-full rounded-sm object-contain"
+                    loading="lazy"
+                  />
                 </div>
                 <h3 className="text-lg font-semibold text-white">
                   {module.title}

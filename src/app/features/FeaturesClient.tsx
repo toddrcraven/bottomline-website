@@ -10,6 +10,8 @@ type Feature = {
   short: string;
   long: string;
   detailSections?: [string, string, string, string];
+  cardImage: string;
+  modalImages: [string, string, string, string];
 };
 
 const modules: Feature[] = [
@@ -26,6 +28,13 @@ const modules: Feature[] = [
       "Key capabilities include bank reconciliation with automated matching and variance tracking, flexible journal entry management for adjustments and accruals, and a fully configurable chart of accounts.",
       "BottomLine’s budgeting functionality allows budgets to be defined by account, period, and multiple dimensions, enabling detailed financial planning and variance analysis. Together, these capabilities ensure accurate financial reporting, strong internal controls, and audit-ready accounting.",
     ],
+    cardImage: "/brand/App%20Images/1.a.jpg",
+    modalImages: [
+      "/brand/App%20Images/1.b.jpg",
+      "/brand/App%20Images/1.c.jpg",
+      "/brand/App%20Images/1.d.jpg",
+      "/brand/App%20Images/1.e.jpg",
+    ],
   },
   {
     id: "fixed-assets",
@@ -39,6 +48,13 @@ const modules: Feature[] = [
       "Assets can be created directly or automatically from purchasing and accounts payable transactions, ensuring consistency between operational activity and accounting records.",
       "BottomLine supports multiple depreciation methods and schedules, with depreciation posted automatically to the general ledger. Asset reclassifications, impairments, and disposals are handled with full auditability, including automated gain or loss calculations.",
       "Fixed asset balances are maintained in real time, enabling accurate reporting, compliance, and alignment with financial statements.",
+    ],
+    cardImage: "/brand/App%20Images/2.a.jpg",
+    modalImages: [
+      "/brand/App%20Images/2.b.jpg",
+      "/brand/App%20Images/2.c.jpg",
+      "/brand/App%20Images/2.d.jpg",
+      "/brand/App%20Images/2.e.jpg",
     ],
   },
   {
@@ -54,6 +70,13 @@ const modules: Feature[] = [
       "Order fulfillment is tightly integrated with warehouse operations, inventory, and invoicing to provide real-time visibility into order status and financial impact.",
       "Promotional and trade programs can be configured to support discounts, rebates, and incentives, with automated accruals and settlement. This ensures that revenue, trade spend, and margins are tracked accurately across customers, products, and programs.",
     ],
+    cardImage: "/brand/App%20Images/3.a.jpg",
+    modalImages: [
+      "/brand/App%20Images/3.b.jpg",
+      "/brand/App%20Images/3.c.jpg",
+      "/brand/App%20Images/3.d.jpg",
+      "/brand/App%20Images/3.e.jpg",
+    ],
   },
   {
     id: "procurement",
@@ -67,6 +90,13 @@ const modules: Feature[] = [
       "Purchase orders can be created manually or generated from planning outputs such as material requirements, ensuring alignment between demand and supply.",
       "Receipts update inventory and accruals in real time, providing immediate visibility into received quantities, costs, and liabilities.",
       "Procurement is fully integrated with accounting, inventory, and vendor management, enabling accurate three-way matching, cost control, and supplier performance tracking.",
+    ],
+    cardImage: "/brand/App%20Images/4.a.jpg",
+    modalImages: [
+      "/brand/App%20Images/4.b.jpg",
+      "/brand/App%20Images/4.c.jpg",
+      "/brand/App%20Images/4.d.jpg",
+      "/brand/App%20Images/4.e.jpg",
     ],
   },
   {
@@ -82,6 +112,13 @@ const modules: Feature[] = [
       "Core processes include inventory transfers, picking, put-aways, and lot tracking for traceability and compliance. Warehouse transactions automatically generate inventory and accounting entries, maintaining alignment between physical movement and financial valuation.",
       "This enables operational efficiency while preserving inventory accuracy and audit integrity.",
     ],
+    cardImage: "/brand/App%20Images/5.a.jpg",
+    modalImages: [
+      "/brand/App%20Images/5.b.jpg",
+      "/brand/App%20Images/5.c.jpg",
+      "/brand/App%20Images/5.d.jpg",
+      "/brand/App%20Images/5.e.jpg",
+    ],
   },
   {
     id: "planning-production",
@@ -95,6 +132,13 @@ const modules: Feature[] = [
       "Forecasts capture anticipated demand, which feeds production plans and master production schedules (MPS) for finished goods and subassemblies.",
       "Material resource planning (MRP) translates production plans into detailed material and capacity requirements, identifying shortages and constraints.",
       "Work orders manage execution on the shop floor, tracking consumption, production, and variances.",
+    ],
+    cardImage: "/brand/App%20Images/6.a.jpg",
+    modalImages: [
+      "/brand/App%20Images/6.b.jpg",
+      "/brand/App%20Images/6.c.jpg",
+      "/brand/App%20Images/6.d.jpg",
+      "/brand/App%20Images/6.e.jpg",
     ],
   },
   {
@@ -110,6 +154,13 @@ const modules: Feature[] = [
       "The Financial Hub supports operational finance functions such as check printing.",
       "Structured period closing ensures coordinated posting activities, completeness, and auditability.",
     ],
+    cardImage: "/brand/App%20Images/7.a.jpg",
+    modalImages: [
+      "/brand/App%20Images/7.b.jpg",
+      "/brand/App%20Images/7.c.jpg",
+      "/brand/App%20Images/7.d.jpg",
+      "/brand/App%20Images/7.e.jpg",
+    ],
   },
   {
     id: "bottomline-administration",
@@ -123,6 +174,13 @@ const modules: Feature[] = [
       "It enables administrators and finance leaders to define accounting setups and warehouse configurations that drive consistent behavior across transactions.",
       "Administrative settings control how accounting, purchasing, sales, inventory, and planning processes behave, including transaction types, posting rules, dimensions, and automation logic.",
       "Document templates standardize transactional output and keep communications consistent across teams.",
+    ],
+    cardImage: "/brand/App%20Images/8.a.jpg",
+    modalImages: [
+      "/brand/App%20Images/8.b.jpg",
+      "/brand/App%20Images/8.c.jpg",
+      "/brand/App%20Images/8.d.jpg",
+      "/brand/App%20Images/8.e.jpg",
     ],
   },
 ];
@@ -149,9 +207,12 @@ function FeatureSection({ title, items, onOpen }: SectionProps) {
             className="bl-card-pretty bl-no-lift group flex h-full min-h-[140px] w-full flex-col justify-between rounded-xl border border-brandGreen/60 bg-surfaceMuted/70 p-5 text-left shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-brandBlue/30 hover:shadow-md hover:ring-1 hover:ring-brandBlue/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandBlue"
           >
             <div className="mb-3 rounded-md border-2 border-dashed border-border/60 bg-surface-header/40 p-3">
-              <div className="flex h-24 w-full items-center justify-center text-xs text-brandSlate">
-                Screenshot
-              </div>
+              <img
+                src={feature.cardImage}
+                alt={`${feature.title} module screenshot`}
+                className="h-auto w-full rounded-sm object-contain"
+                loading="lazy"
+              />
             </div>
             <div>
               <p className="text-lg font-semibold text-[color:var(--header-banner-bg)]">
@@ -175,6 +236,7 @@ export default function FeaturesClient() {
   const router = useRouter();
   const pathname = usePathname();
   const [selected, setSelected] = useState<Feature | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const searchParams = useSearchParams();
   const returnKey = "moduleDetailReturn";
 
@@ -189,6 +251,21 @@ export default function FeaturesClient() {
       setSelected(match);
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    if (!selected) {
+      setIsModalVisible(false);
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      setIsModalVisible(true);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [selected]);
 
   const storeReturnPosition = () => {
     try {
@@ -263,16 +340,24 @@ export default function FeaturesClient() {
         open={Boolean(selected)}
         title={selected?.title ?? ""}
         onClose={handleClose}
-        containerClassName="max-w-none w-[90vw] h-[85vh] flex flex-col"
+        containerClassName={[
+          "max-w-none w-[90vw] h-[85vh] flex flex-col transition duration-200 ease-out",
+          isModalVisible
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 translate-y-3 scale-[0.985]",
+        ].join(" ")}
         bodyClassName="max-h-none flex-1"
       >
         <div className="grid gap-6 md:grid-cols-2">
           {(selected?.detailSections ?? []).map((section, index) => (
             <div key={`${selected?.id ?? "module"}-${index}`} className="space-y-3">
               <div className="rounded-md border-2 border-dashed border-border/60 bg-surface-header/40 p-3">
-                <div className="flex h-24 w-full items-center justify-center text-xs text-brandSlate">
-                  Screenshot
-                </div>
+                <img
+                  src={selected?.modalImages?.[index] ?? ""}
+                  alt={`${selected?.title ?? "Module"} detail screenshot ${index + 1}`}
+                  className="h-auto w-full rounded-sm object-contain"
+                  loading="lazy"
+                />
               </div>
               <p className="text-sm text-brandSlate">{section}</p>
             </div>
