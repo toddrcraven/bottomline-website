@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const pricingTiers = [
-  { name: "Up to 5 users", price: "$24,000 / year" },
-  { name: "Up to 15 users", price: "$36,000 / year" },
-  { name: "Up to 30 users", price: "$54,000 / year" },
-  { name: "Up to 60 users", price: "$72,000 / year" },
+  { name: "Up to 5 users", price: "$34,000 / year" },
+  { name: "Up to 15 users", price: "$46,000 / year" },
+  { name: "Up to 30 users", price: "$64,000 / year" },
+  { name: "Up to 60 users", price: "$80,000 / year" },
   { name: "61+ users", price: "$90,000+ / year" },
 ];
 
@@ -12,20 +12,20 @@ const implementationOptions = [
   {
     name: "QuickStart",
     description:
-      "Uses BottomLine defaults for accounting and warehouse setups, limited import and training, 1 sandbox deployment.",
-    estimate: "Estimated implementation: $____ to $____",
+      "Uses BottomLine defaults for accounting and warehouse setups, limited import and training, 2 sandbox deployments.",
+    estimate: "Estimated* implementation: $20,000 to $40,000",
   },
   {
     name: "Standard Launch",
     description:
-      "Review/update configurations, 2 sandbox deployments, online training.",
-    estimate: "Estimated implementation: $____ to $____",
+      "Review/update configurations, 3+ sandbox deployments, online training.",
+    estimate: "Estimated* implementation: $30,000 to $50,000",
   },
   {
     name: "Full Suite Setup",
     description:
-      "Advanced setup/config, full governance, 2 sandbox deployments.",
-    estimate: "Estimated implementation: $____ to $____",
+      "Advanced setup/config, full governance, 3+ sandbox deployments.",
+    estimate: "Estimated* implementation: $60,000+",
   },
 ];
 
@@ -39,11 +39,18 @@ export default function PricingPage() {
           you can configure what you need without tier hopping.
         </p>
       </header>
-      <p className="mb-6 text-sm text-brandSlate">
-        BottomLine Suite includes finance, warehouse, planning, and core
-        manufacturing operations.
-      </p>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      <section>
+        <h2 className="text-2xl font-semibold text-white">Licensing</h2>
+        <p className="mt-2 max-w-3xl text-brandSlate">
+          Every installation of the BottomLine app includes all of the modules
+          described on the Features page.
+        </p>
+        <p className="mt-2 max-w-3xl text-brandSlate">
+          Annual licensing is based on the number of licensed users in your
+          organization.
+        </p>
+      </section>
+      <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
         {pricingTiers.map((tier) => (
           <div
             key={tier.name}
@@ -94,10 +101,22 @@ export default function PricingPage() {
           ))}
         </div>
       </section>
-      <p className="mt-8 text-xs text-brandSlate">
-        Prices shown are annual per org. Final configuration and implementation
-        are scoped during discovery.
-      </p>
+      <section className="mt-12">
+        <p className="text-xs text-brandSlate">
+          * Prices shown are annual per org. Final configuration and implementation
+          are scoped during discovery.
+        </p>
+      </section>
+      <section className="mt-12">
+        <h2 className="text-2xl font-semibold text-white">Support</h2>
+        <p className="mt-2 max-w-3xl text-brandSlate">
+          Each organization using BottomLine ERP will have different needs when
+          it comes to ongoing support, from regular training and troubleshooting
+          to customizations and workflow optimization. During implementation, we
+          will work with you to determine the optimal number of support hours
+          you will need to ensure your team is set up for success.
+        </p>
+      </section>
     </main>
   );
 }
