@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 const pricingTiers = [
-  { name: "Up to 5 users", price: "$34,000 / year" },
-  { name: "Up to 15 users", price: "$46,000 / year" },
-  { name: "Up to 30 users", price: "$64,000 / year" },
-  { name: "Up to 60 users", price: "$80,000 / year" },
-  { name: "61+ users", price: "$90,000+ / year" },
+  { name: "Up to 5 users", price: "$18,000 / year" },
+  { name: "Up to 15 users", price: "$24,000 / year" },
+  { name: "Up to 30 users", price: "$32,000 / year" },
+  { name: "Up to 60 users", price: "$50,000 / year" },
+  { name: "61+ users", price: "$70,000 / year" },
 ];
 
 const implementationOptions = [

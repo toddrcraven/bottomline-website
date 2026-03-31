@@ -49,6 +49,12 @@ export function SiteFooter() {
               Privacy
             </Link>
             <Link
+              href="/accessibility"
+              className="text-gray-900 transition-colors hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandBlue focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundBase"
+            >
+              Accessibility
+            </Link>
+            <Link
               href="/terms"
               className="text-gray-900 transition-colors hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandBlue focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundBase"
             >

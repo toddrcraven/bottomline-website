@@ -47,7 +47,12 @@ export default function ContactPage() {
         HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
       >
     ) => {
-      setFormState((prev) => ({ ...prev, [field]: event.target.value }));
+      const nextValue =
+        event.target instanceof HTMLInputElement &&
+        event.target.type === "checkbox"
+          ? event.target.checked
+          : event.target.value;
+      setFormState((prev) => ({ ...prev, [field]: nextValue }));
       if (status !== "sending" && status !== "idle") {
         setStatus("idle");
         setErrorMessage("");
@@ -217,6 +222,21 @@ export default function ContactPage() {
                 placeholder="Share a quick overview of your goals, timeline, and team size."
               />
             </label>
+
+            <div className="rounded-lg border border-brandGreen/20 bg-surfaceMuted/50 p-4 text-sm text-brandSlate">
+              <p>
+                By submitting this form, you agree that we may contact you about
+                your inquiry using the email address and phone number you provide.
+              </p>
+              <p className="mt-2">
+                We do not use phone numbers submitted here for marketing texts or
+                telemarketing. See our{" "}
+                <Link href="/privacy" className="underline">
+                  Privacy Policy
+                </Link>{" "}
+                for details.
+              </p>
+            </div>
 
             <div className="flex flex-wrap items-center gap-3">
               <button

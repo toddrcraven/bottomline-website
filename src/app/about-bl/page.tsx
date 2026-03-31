@@ -48,9 +48,10 @@ export default function AboutBLPage() {
               sync failures, and reconciliation headaches.
             </li>
             <li>
-              <strong>Enterprise-grade security and scale.</strong> Leverage
-              Salesforce&apos;s proven infrastructure for roles, permissions,
-              auditability, and compliance without rebuilding it yourself.
+              <strong>Built on proven platform foundations.</strong> BottomLine
+              runs on Salesforce, allowing teams to build on the platform&apos;s
+              established identity, permissioning, audit, and infrastructure
+              capabilities rather than recreating those layers from scratch.
             </li>
             <li>
               <strong>Adapt at the speed of your business.</strong> Configure
