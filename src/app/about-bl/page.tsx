@@ -68,7 +68,7 @@ export default function AboutBLPage() {
         </h2>
         <div className="mt-3 space-y-4 text-brandSlate">
           <p>
-            BottomLine was founded by an operations and systems leader with
+            BottomLine was conceived by an operations and systems leader with
             firsthand SMB experience navigating the limitations of traditional
             ERP systems. Early in his career, he served as a supply chain
             manager for a medical equipment manufacturing startup, where he led
