@@ -12,9 +12,9 @@ export default function AboutBLPage() {
         <h2 className="text-xl font-semibold text-white">Our vision</h2>
         <p className="mt-3 text-brandSlate">
           BottomLine is built on the belief that ERPs don&apos;t need to be
-          complex to be powerful. It aims to replace fragmented systems and
+          complex to be powerful. We aim to replace fragmented systems and
           manual workarounds with a single source of truth that is both
-          intuitive for users and precise in execution. In doing so, it enables
+          intuitive for users and precise in execution. In doing so, we enable
           businesses to operate with discipline, transparency, and confidence
           at every stage of growth.
         </p>
@@ -68,15 +68,14 @@ export default function AboutBLPage() {
         </h2>
         <div className="mt-3 space-y-4 text-brandSlate">
           <p>
-            BottomLine was founded by an operator with firsthand experience
-            navigating the limitations of traditional ERP systems as a small
-            business.
+            BottomLine was founded by an operations and systems leader with
+            firsthand SMB experience navigating the limitations of traditional
+            ERP systems. Early in his career, he served as a supply chain
+            manager for a medical equipment manufacturing startup, where he led
+            the implementation of the company&apos;s first MRP system.
           </p>
           <p>
-            Early in his career, he served as a supply chain manager for a
-            medical equipment manufacturing startup, where he led the
-            implementation of the company&apos;s first MRP system. Operating
-            under tight budget constraints, the organization selected a
+            Operating under tight budget constraints, the organization selected a
             low-cost solution that required extensive customization. The result
             was a system that was technically functional but operationally
             inefficient, with users relying heavily on custom add-ons rather
