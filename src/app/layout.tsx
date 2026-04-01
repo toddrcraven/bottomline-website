@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   title: "BottomLine ERP",
   description: "BottomLine ERP marketing site",
   icons: {
-    icon: "/brand/bottom-line-erp-icon-512.png",
-    shortcut: "/brand/bottom-line-erp-icon-512.png",
-    apple: "/brand/bottom-line-erp-icon-1024.png",
+    icon: "/brand/Icon.png",
+    shortcut: "/brand/Icon.png",
+    apple: "/brand/Icon.png",
   },
 };
 
