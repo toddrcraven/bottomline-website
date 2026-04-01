@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 const pricingTiers = [
-  { name: "Up to 5 users", price: "$18,000 / year" },
-  { name: "Up to 15 users", price: "$24,000 / year" },
-  { name: "Up to 30 users", price: "$32,000 / year" },
-  { name: "Up to 60 users", price: "$50,000 / year" },
-  { name: "61+ users", price: "$70,000 / year" },
+  { name: "Up to 5 users", price: "Coming soon..." },
+  { name: "Up to 15 users", price: "Coming soon..." },
+  { name: "Up to 30 users", price: "Coming soon..." },
+  { name: "Up to 60 users", price: "Coming soon..." },
+  { name: "61+ users", price: "Coming soon..." },
 ];
 
 const implementationOptions = [
@@ -13,19 +13,19 @@ const implementationOptions = [
     name: "QuickStart",
     description:
       "Uses BottomLine defaults for accounting and warehouse setups, limited import and training, 2 sandbox deployments.",
-    estimate: "Estimated* implementation: $20,000 to $40,000",
+    estimate: "Coming soon...",
   },
   {
     name: "Standard Launch",
     description:
       "Review/update configurations, 3+ sandbox deployments, online training.",
-    estimate: "Estimated* implementation: $30,000 to $50,000",
+    estimate: "Coming soon...",
   },
   {
     name: "Full Suite Setup",
     description:
       "Advanced setup/config, full governance, 3+ sandbox deployments.",
-    estimate: "Estimated* implementation: $60,000+",
+    estimate: "Coming soon...",
   },
 ];
 
@@ -35,8 +35,8 @@ export default function PricingPage() {
       <header className="mb-10">
         <h1 className="text-3xl font-semibold text-white">Pricing</h1>
         <p className="mt-3 max-w-3xl text-brandSlate">
-          One package. One price. Simple. BottomLine delivers the full suite so
-          you can configure what you need without tier hopping.
+          Pricing details are being finalized. BottomLine delivers the full
+          suite so you can configure what you need without tier hopping.
         </p>
       </header>
       <section>
@@ -46,8 +46,11 @@ export default function PricingPage() {
           described on the Features page.
         </p>
         <p className="mt-2 max-w-3xl text-brandSlate">
-          Annual licensing is based on the number of licensed users in your
-          organization.
+          Licensing details will be announced soon.
+        </p>
+        <p className="mt-2 max-w-3xl text-brandSlate">
+          Please reach out to us now if you are interested in being part of our
+          early adopter program.
         </p>
       </section>
       <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -103,8 +106,7 @@ export default function PricingPage() {
       </section>
       <section className="mt-12">
         <p className="text-xs text-brandSlate">
-          * Prices shown are annual per org. Final configuration and implementation
-          are scoped during discovery.
+          Final pricing and implementation details will be shared soon.
         </p>
       </section>
       <section className="mt-12">

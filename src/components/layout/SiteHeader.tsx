@@ -12,6 +12,11 @@ const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
+const bannerMessages = [
+  "***  BottomLine ERP Coming Soon!!!  ***",
+  "***  Stay Tuned for Updates on Availability!  ***",
+];
+
 export function SiteHeader() {
   const pathname = usePathname();
   const isActive = (href: string) =>
@@ -19,6 +24,23 @@ export function SiteHeader() {
 
   return (
     <header className="site-header sticky top-0 z-50 border-b border-borderSoft/80 bg-[#F1F5F9] backdrop-blur">
+      <div className="header-marquee border-b border-borderSoft/80">
+        <div className="header-marquee__track" aria-label="Announcement banner">
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              className="header-marquee__content"
+              aria-hidden={copy === 1}
+            >
+              {bannerMessages.map((message) => (
+                <span key={`${copy}-${message}`} className="header-marquee__item">
+                  {message}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Wider max width + responsive padding for laptop-friendly, readable layout. */}
         <Link
