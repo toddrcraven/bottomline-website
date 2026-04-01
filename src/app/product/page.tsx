@@ -120,8 +120,12 @@ export default function ProductPage() {
       typeof window !== "undefined" &&
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobileViewport =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(max-width: 767px)").matches;
 
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || isMobileViewport) {
       return;
     }
 
