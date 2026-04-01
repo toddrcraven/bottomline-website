@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
@@ -19,8 +20,13 @@ const bannerMessages = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isActive = (href: string) =>
     pathname === href || (href !== "/" && pathname?.startsWith(href));
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className="site-header sticky top-0 z-50 border-b border-borderSoft/80 bg-[#F1F5F9] backdrop-blur">
@@ -78,9 +84,32 @@ export function SiteHeader() {
             );
           })}
         </nav>
+        <button
+          type="button"
+          className="flex min-w-[88px] items-center justify-center gap-3 rounded border border-brandBlue/25 bg-brandBlue/10 px-4 py-3 text-[color:var(--brand-navy)] outline-none transition-colors hover:bg-brandBlue/15 focus-visible:ring-2 focus-visible:ring-brandBlue/40 focus-visible:ring-offset-0 md:hidden"
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-site-menu"
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+        >
+          <span className="flex flex-col gap-1.5" aria-hidden="true">
+            <span className="block h-0.5 w-7 rounded-full bg-[color:var(--brand-navy)]" />
+            <span className="block h-0.5 w-7 rounded-full bg-[color:var(--brand-navy)]" />
+            <span className="block h-0.5 w-7 rounded-full bg-[color:var(--brand-navy)]" />
+          </span>
+          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--brand-navy)]">
+            Menu
+          </span>
+        </button>
       </div>
-      <div className="border-t border-borderSoft/80 bg-[#F1F5F9] px-4 py-3 md:hidden">
-        <div className="mx-auto flex w-full max-w-screen-2xl items-center gap-2 overflow-x-auto text-sm font-semibold text-[color:var(--header-banner-bg)]">
+      <div
+        id="mobile-site-menu"
+        className={[
+          "border-t border-borderSoft/80 bg-[#F1F5F9] px-4 py-4 md:hidden",
+          isMobileMenuOpen ? "block" : "hidden",
+        ].join(" ")}
+      >
+        <div className="mx-auto grid w-full max-w-screen-2xl gap-3">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -88,21 +117,25 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
+                onClick={() => setIsMobileMenuOpen(false)}
                 className={[
-                  "group relative isolate z-10 inline-flex items-center justify-center whitespace-nowrap rounded bg-brandBlue px-4 py-2 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.04]",
+                  "group relative isolate z-10 inline-flex min-h-12 items-center justify-between rounded bg-brandBlue px-4 py-3 text-sm font-semibold text-[color:var(--header-banner-bg)] transition-transform duration-100 hover:shadow-sm active:scale-[1.02]",
                   "outline-none focus-visible:ring-2 focus-visible:ring-brandGreen/50 focus-visible:ring-offset-0",
                   active
                     ? [
                         "text-[color:var(--header-banner-bg)]",
-                        "after:pointer-events-none after:absolute after:left-1/2 after:bottom-[-4px] after:h-[6px] after:w-[85%] after:-translate-x-1/2 after:rounded-full after:z-0",
-                        "after:bg-brandGreen/70 after:blur-md after:opacity-100",
+                        "ring-1 ring-brandGreen/60",
                         "shadow-[0_8px_24px_-12px_rgba(34,197,94,0.58)]",
                       ].join(" ")
-                    : "after:content-[''] after:absolute after:left-1/2 after:bottom-[-8px] after:h-[0px] after:w-[0px] after:opacity-0",
+                    : "",
                 ].join(" ")}
               >
-                <span className="relative z-10 text-[color:var(--header-banner-bg)]">
-                  {link.label}
+                <span className="relative z-10 text-[color:var(--header-banner-bg)]">{link.label}</span>
+                <span
+                  className="relative z-10 text-base text-[color:var(--header-banner-bg)]/80"
+                  aria-hidden="true"
+                >
+                  ›
                 </span>
               </Link>
             );
